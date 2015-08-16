@@ -75,7 +75,6 @@ let colors_name = "hybrid"
 " ----------------------------------------------------------------------------
 if has("gui_running")
   let s:vmode      = "gui"
-  let s:background = "#1d1f21"
   let s:foreground = "#c5c8c6"
   let s:selection  = "#373b41"
   let s:line       = "#282a2e"
@@ -99,8 +98,7 @@ if has("gui_running")
   let s:darkpurple = "#5f005f"
 else
   let s:vmode      = "cterm"
-  let s:background = "234"
-  let s:window     = "236"
+  let s:window     = "52"
   let s:darkcolumn = "234"
   let s:addbg      = "65"
   let s:addfg      = "193"
@@ -155,7 +153,6 @@ let s:i      = ",italic"
 " ----------------------------------------------------------------------------
 exe "let s:bg_none       = ' ".s:vmode."bg=".s:none      ."'"
 exe "let s:bg_foreground = ' ".s:vmode."bg=".s:foreground."'"
-exe "let s:bg_background = ' ".s:vmode."bg=".s:background."'"
 exe "let s:bg_selection  = ' ".s:vmode."bg=".s:selection ."'"
 exe "let s:bg_line       = ' ".s:vmode."bg=".s:line      ."'"
 exe "let s:bg_comment    = ' ".s:vmode."bg=".s:comment   ."'"
@@ -179,7 +176,6 @@ exe "let s:bg_darkpurple = ' ".s:vmode."bg=".s:darkpurple."'"
 
 exe "let s:fg_none       = ' ".s:vmode."fg=".s:none      ."'"
 exe "let s:fg_foreground = ' ".s:vmode."fg=".s:foreground."'"
-exe "let s:fg_background = ' ".s:vmode."fg=".s:background."'"
 exe "let s:fg_selection  = ' ".s:vmode."fg=".s:selection ."'"
 exe "let s:fg_line       = ' ".s:vmode."fg=".s:line      ."'"
 exe "let s:fg_comment    = ' ".s:vmode."fg=".s:comment   ."'"
@@ -216,7 +212,6 @@ exe "let s:fmt_revb      = ' ".s:vmode."=NONE".s:r.s:b.  " term=NONE".s:r.s:b."'
 if has("gui_running")
   exe "let s:sp_none       = ' guisp=".s:none      ."'"
   exe "let s:sp_foreground = ' guisp=".s:foreground."'"
-  exe "let s:sp_background = ' guisp=".s:background."'"
   exe "let s:sp_selection  = ' guisp=".s:selection ."'"
   exe "let s:sp_line       = ' guisp=".s:line      ."'"
   exe "let s:sp_comment    = ' guisp=".s:comment   ."'"
@@ -239,7 +234,6 @@ if has("gui_running")
 else
   let s:sp_none       = ""
   let s:sp_foreground = ""
-  let s:sp_background = ""
   let s:sp_selection  = ""
   let s:sp_line       = ""
   let s:sp_comment    = ""
@@ -273,9 +267,6 @@ exe "hi! CursorLine"    .s:fg_none        .s:bg_line        .s:fmt_none
 exe "hi! Directory"     .s:fg_blue        .s:bg_none        .s:fmt_none
 exe "hi! DiffAdd"       .s:fg_addfg       .s:bg_addbg       .s:fmt_none
 exe "hi! DiffChange"    .s:fg_changefg    .s:bg_changebg    .s:fmt_none
-exe "hi! DiffDelete"    .s:fg_background  .s:bg_red         .s:fmt_none
-exe "hi! DiffText"      .s:fg_background  .s:bg_blue        .s:fmt_none
-exe "hi! ErrorMsg"      .s:fg_background  .s:bg_red         .s:fmt_stnd
 exe "hi! VertSplit"     .s:fg_window      .s:bg_none        .s:fmt_none
 exe "hi! Folded"        .s:fg_comment     .s:bg_darkcolumn  .s:fmt_none
 exe "hi! FoldColumn"    .s:fg_none        .s:bg_darkcolumn  .s:fmt_none
@@ -283,7 +274,6 @@ exe "hi! SignColumn"    .s:fg_none        .s:bg_darkcolumn  .s:fmt_none
 "   Incsearch"
 exe "hi! LineNr"        .s:fg_selection   .s:bg_none        .s:fmt_none
 exe "hi! CursorLineNr"  .s:fg_yellow      .s:bg_none        .s:fmt_none
-exe "hi! MatchParen"    .s:fg_background  .s:bg_changebg    .s:fmt_none
 exe "hi! ModeMsg"       .s:fg_green       .s:bg_none        .s:fmt_none
 exe "hi! MoreMsg"       .s:fg_green       .s:bg_none        .s:fmt_none
 exe "hi! NonText"       .s:fg_selection   .s:bg_none        .s:fmt_none
@@ -292,13 +282,11 @@ exe "hi! PmenuSel"      .s:fg_foreground  .s:bg_selection   .s:fmt_revr
 "   PmenuSbar"
 "   PmenuThumb"
 exe "hi! Question"      .s:fg_green       .s:bg_none        .s:fmt_none
-exe "hi! Search"        .s:fg_background  .s:bg_yellow      .s:fmt_none
 exe "hi! SpecialKey"    .s:fg_selection   .s:bg_none        .s:fmt_none
 exe "hi! SpellCap"      .s:fg_blue        .s:bg_darkblue    .s:fmt_undr
 exe "hi! SpellLocal"    .s:fg_aqua        .s:bg_darkcyan    .s:fmt_undr
 exe "hi! SpellBad"      .s:fg_red         .s:bg_darkred     .s:fmt_undr
 exe "hi! SpellRare"     .s:fg_purple      .s:bg_darkpurple  .s:fmt_undr
-exe "hi! StatusLine"    .s:fg_comment     .s:bg_background  .s:fmt_revr
 exe "hi! StatusLineNC"  .s:fg_window      .s:bg_comment     .s:fmt_revr
 exe "hi! TabLine"       .s:fg_foreground  .s:bg_darkcolumn  .s:fmt_revr
 "   TabLineFill"
@@ -312,7 +300,7 @@ hi LongLineWarning  guifg=NONE        guibg=#371F1C     gui=underline ctermfg=NO
 
 " Use Xresources for background colour
 if has('gui_running') || g:hybrid_use_Xresources != 1
-  exe "hi! Normal"        .s:fg_foreground  .s:bg_background  .s:fmt_none
+  exe "hi! Normal"        .s:fg_foreground  .s:bg_none  .s:fmt_none
 else
   exe "hi! Normal"        .s:fg_foreground  .s:bg_none        .s:fmt_none
 endif
